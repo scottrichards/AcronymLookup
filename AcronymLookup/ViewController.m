@@ -18,6 +18,8 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
 @property (strong, nonatomic) NSDictionary *acronymDictionary;
 @property (strong, nonatomic) NSString *prettyString;
 @property (weak, nonatomic) IBOutlet UITextView *acronymResults;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *acronymArray;
 @end
 
 @implementation ViewController
@@ -58,6 +60,17 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
       [self parseJSONDictionary:(NSDictionary *)responseObject depth:0];
     } else if ([responseObject isKindOfClass:[NSArray class]]) {
       [self parseJSONArray:(NSArray *)responseObject depth:0];
+    }
+    if ([responseObject isKindOfClass:[NSArray class]]) {
+      NSArray *rootArray = (NSArray *)responseObject;
+      if ([rootArray count] > 0) {
+        NSDictionary *rootDictionary = (NSDictionary *)rootArray[0];
+        if (rootDictionary) {
+          _acronymArray = rootDictionary[@"lfs"];
+          [_tableView reloadData];
+        }
+      }
+      
     }
     _acronymResults.text = _prettyString;
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -195,5 +208,29 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
   return formattedString;
 }
 
+#pragma mark - TableView
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return [_acronymArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static NSString *CellIdentifier = @"cell";
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  if (indexPath.row < [_acronymArray count]) {
+    NSDictionary *acronymItemDictionary = _acronymArray[indexPath.row];
+    if (acronymItemDictionary != nil) {
+      cell.textLabel.text = acronymItemDictionary[@"lf"];
+    }
+  }
+  
+  return cell;
+}
 @end
