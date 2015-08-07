@@ -34,7 +34,7 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
 // invoked when user clicks on the search button, send a request to retrieve json feed
 - (IBAction)onLookup:(id)sender {
   MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-  hud.mode = MBProgressHUDModeAnnularDeterminate;
+//  hud.mode = MBProgressHUDModeAnnularDeterminate;
   hud.labelText = @"Loading";
   NSString *urlString = [NSString stringWithFormat:jsonURLFeed, _acronymField.text];
   NSURL *url = [NSURL URLWithString:urlString];
@@ -66,9 +66,15 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
   [operation start];
 }
 
+#pragma mark - TextField
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [textField resignFirstResponder];
+  return YES;
+}
 
-#pragma mark - TableView
+#pragma mark - TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
