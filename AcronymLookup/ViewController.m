@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AFNetworking.h"
+#import "MBProgressHud.h"
 
 NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.py?sf=%@";
 
@@ -33,21 +34,17 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
 
 
 - (IBAction)onLookup:(id)sender {
-  // 1
+  MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+  hud.mode = MBProgressHUDModeAnnularDeterminate;
+  hud.labelText = @"Loading";
   NSString *urlString = [NSString stringWithFormat:jsonURLFeed, _acronymField.text];
-  
   NSURL *url = [NSURL URLWithString:urlString];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  
-  // 2
   AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-  
   operation.responseSerializer = [AFJSONResponseSerializer serializer];
-
   operation.responseSerializer.acceptableContentTypes = nil;
   [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-    
-    // 3
+    [hud hide:YES];
     if ([responseObject isKindOfClass:[NSArray class]]) {
       NSArray *rootArray = (NSArray *)responseObject;
       if ([rootArray count] > 0) {
@@ -57,11 +54,9 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
           [_tableView reloadData];
         }
       }
-      
     }
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    
-    // 4
+    [hud hide:YES];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Acronyms"
                                                         message:[error localizedDescription]
                                                        delegate:nil
@@ -69,8 +64,6 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
                                               otherButtonTitles:nil];
     [alertView show];
   }];
-  
-  // 5
   [operation start];
 }
 
@@ -98,7 +91,6 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
       cell.textLabel.text = acronymItemDictionary[@"lf"];
     }
   }
-  
   return cell;
 }
 @end
