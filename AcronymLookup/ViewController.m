@@ -10,9 +10,8 @@
 #import "AFNetworking.h"
 #import "MBProgressHud.h"
 
+// URL feed to lookup acronym
 NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.py?sf=%@";
-
-static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/weather_sample/";
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *acronymField; // field for entering acronym to search for
@@ -68,6 +67,7 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
 
 #pragma mark - TextField
 
+// dismiss the keyboard when clicking the done button
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
   [textField resignFirstResponder];
