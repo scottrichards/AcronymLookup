@@ -15,24 +15,23 @@ NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.p
 static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/weather_sample/";
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *acronymField;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *acronymArray;
+@property (weak, nonatomic) IBOutlet UITextField *acronymField; // field for entering acronym to search for
+@property (weak, nonatomic) IBOutlet UITableView *tableView;    // results of acronym search go here
+@property (strong, nonatomic) NSArray *acronymArray;            // array of acronym Dictionaries to populate the table
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 
+// invoked when user clicks on the search button, send a request to retrieve json feed
 - (IBAction)onLookup:(id)sender {
   MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
   hud.mode = MBProgressHUDModeAnnularDeterminate;
@@ -76,11 +75,13 @@ static NSString * const BaseURLString = @"http://www.raywenderlich.com/demos/wea
   return 1;
 }
 
+// return number of acronym items
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
   return [_acronymArray count];
 }
 
+// return the tableviewcell for the specified row
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   static NSString *CellIdentifier = @"cell";
