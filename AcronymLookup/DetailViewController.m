@@ -48,6 +48,9 @@
   NSLog(@"Frequency: %@",frequencyString);
   _frequency.text = [_numberFormatter stringFromNumber:frequency];
   _alternateAcronyms = _acronymData[@"vars"];
+  if (_alternateAcronyms) {
+    [_tableView reloadData];
+  }
 }
 
 /*
