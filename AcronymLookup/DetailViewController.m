@@ -27,7 +27,10 @@
   [_numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
   [_numberFormatterNoStyle setNumberStyle:NSNumberFormatterNoStyle];
   [_tableView setAllowsSelection:NO];   // prevent selection since we don't do anything
+  _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];     // get rid of empty table cells
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

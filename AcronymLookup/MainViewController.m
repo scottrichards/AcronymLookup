@@ -24,7 +24,7 @@ NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.p
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-//  [_tableView setAllowsSelection:NO]; // prevent selection of the table cell elements
+  _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];     // get rid of empty table cells
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +39,6 @@ NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.p
 // invoked when user clicks on the search button, send a request to retrieve json feed
 - (IBAction)onLookup:(id)sender {
   MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//  hud.mode = MBProgressHUDModeAnnularDeterminate;
   hud.labelText = @"Loading";
   NSString *urlString = [NSString stringWithFormat:jsonURLFeed, _acronymField.text];
   NSURL *url = [NSURL URLWithString:urlString];
