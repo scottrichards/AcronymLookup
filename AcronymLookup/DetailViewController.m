@@ -34,10 +34,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-//
+// view is being displayed update the data reload table view
 - (void)viewWillAppear:(BOOL)animated
 {
-  self.navigationController.navigationBar.topItem.title = @"Back";
   NSNumber *frequency = _acronymData[@"freq"];
   NSNumber *since = _acronymData[@"since"];
   NSString *sinceString;
@@ -61,7 +60,7 @@
   return 1;
 }
 
-// return number of acronym items
+// return number of alternate acronym items
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
   return [_alternateAcronyms count];

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Scott Richards. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "AFNetworking.h"
 #import "MBProgressHud.h"
 #import "DetailViewController.h"
@@ -14,13 +14,13 @@
 // URL feed to lookup acronym
 NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.py?sf=%@";
 
-@interface ViewController ()
+@interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *acronymField; // field for entering acronym to search for
 @property (weak, nonatomic) IBOutlet UITableView *tableView;    // results of acronym search go here
 @property (strong, nonatomic) NSArray *acronymArray;            // array of acronym Dictionaries to populate the table
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -33,7 +33,6 @@ NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.p
 
 - (void)viewWillAppear:(BOOL)animated
 {
-   self.navigationController.navigationBar.topItem.title = @"Acronym Lookup";
 }
 
 
