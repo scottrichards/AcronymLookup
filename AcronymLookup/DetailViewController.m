@@ -9,15 +9,13 @@
 #import "DetailViewController.h"
 
 @interface DetailViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *acronymName;
-@property (weak, nonatomic) IBOutlet UILabel *since;
-@property (weak, nonatomic) IBOutlet UILabel *frequency;
-@property (strong, nonatomic) NSNumberFormatter *numberFormatter;
-@property (strong, nonatomic) NSNumberFormatter *numberFormatterNoStyle;
-@property (strong, nonatomic) NSArray *alternateAcronyms;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-
+@property (weak, nonatomic) IBOutlet UILabel *acronymName;    // display name of acronym at top
+@property (weak, nonatomic) IBOutlet UILabel *since;          // date acronym was used
+@property (weak, nonatomic) IBOutlet UILabel *frequency;      // frequency label
+@property (strong, nonatomic) NSNumberFormatter *numberFormatter;   // number formatter for frequency
+@property (strong, nonatomic) NSNumberFormatter *numberFormatterNoStyle;  // number formatter for year no commas
+@property (strong, nonatomic) NSArray *alternateAcronyms;     // date for alternate acronyms
+@property (weak, nonatomic) IBOutlet UITableView *tableView;  // tableView to display alternates
 @end
 
 @implementation DetailViewController
@@ -28,7 +26,7 @@
   _numberFormatterNoStyle = [NSNumberFormatter new];
   [_numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
   [_numberFormatterNoStyle setNumberStyle:NSNumberFormatterNoStyle];
-    // Do any additional setup after loading the view.
+  [_tableView setAllowsSelection:NO];   // prevent selection since we don't do anything
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,8 +34,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+//
 - (void)viewWillAppear:(BOOL)animated
 {
+  self.navigationController.navigationBar.topItem.title = @"Back";
   NSNumber *frequency = _acronymData[@"freq"];
   NSNumber *since = _acronymData[@"since"];
   NSString *sinceString;
@@ -55,15 +55,6 @@
 
 #pragma mark - UITableViewDataSource
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (indexPath.row < [_alternateAcronyms count]) {
-    NSDictionary *acronymItemDictionary = _alternateAcronyms[indexPath.row];
-    DetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    detailViewController.acronymData = acronymItemDictionary;
-    [self.navigationController pushViewController:detailViewController animated:YES];
-  }
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -31,6 +31,11 @@ NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.p
   [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+   self.navigationController.navigationBar.topItem.title = @"Acronym Lookup";
+}
+
 
 // invoked when user clicks on the search button, send a request to retrieve json feed
 - (IBAction)onLookup:(id)sender {
