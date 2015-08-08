@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		014656C91B7582D300C1F028 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014656C81B7582D300C1F028 /* DetailViewController.m */; };
 		01A103BC1B73DA1000357DD1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A103BB1B73DA1000357DD1 /* main.m */; };
 		01A103BF1B73DA1000357DD1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A103BE1B73DA1000357DD1 /* AppDelegate.m */; };
 		01A103C21B73DA1000357DD1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A103C11B73DA1000357DD1 /* ViewController.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		014656C71B7582D300C1F028 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		014656C81B7582D300C1F028 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		01A103B61B73DA1000357DD1 /* AcronymLookup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcronymLookup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01A103BA1B73DA1000357DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01A103BB1B73DA1000357DD1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,12 +93,14 @@
 			children = (
 				01A103BD1B73DA1000357DD1 /* AppDelegate.h */,
 				01A103BE1B73DA1000357DD1 /* AppDelegate.m */,
-				01A103C01B73DA1000357DD1 /* ViewController.h */,
-				01A103C11B73DA1000357DD1 /* ViewController.m */,
-				01A103C31B73DA1000357DD1 /* Main.storyboard */,
+				014656C71B7582D300C1F028 /* DetailViewController.h */,
+				014656C81B7582D300C1F028 /* DetailViewController.m */,
 				01A103C61B73DA1000357DD1 /* Images.xcassets */,
 				01A103C81B73DA1000357DD1 /* LaunchScreen.xib */,
+				01A103C31B73DA1000357DD1 /* Main.storyboard */,
 				01A103B91B73DA1000357DD1 /* Supporting Files */,
+				01A103C01B73DA1000357DD1 /* ViewController.h */,
+				01A103C11B73DA1000357DD1 /* ViewController.m */,
 			);
 			path = AcronymLookup;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				01A103C21B73DA1000357DD1 /* ViewController.m in Sources */,
 				01A103BF1B73DA1000357DD1 /* AppDelegate.m in Sources */,
 				01A103BC1B73DA1000357DD1 /* main.m in Sources */,
+				014656C91B7582D300C1F028 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "MBProgressHud.h"
+#import "DetailViewController.h"
 
 // URL feed to lookup acronym
 NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.py?sf=%@";
@@ -76,6 +77,16 @@ NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.p
 }
 
 #pragma mark - TableViewDataSource
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (indexPath.row < [_acronymArray count]) {
+    NSDictionary *acronymItemDictionary = _acronymArray[indexPath.row];
+    DetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    detailViewController.acronymData = acronymItemDictionary;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+  }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
