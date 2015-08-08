@@ -23,6 +23,7 @@ NSString *jsonURLFeed = @"http://www.nactem.ac.uk/software/acromine/dictionary.p
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+//  [_tableView setAllowsSelection:NO]; // prevent selection of the table cell elements
 }
 
 - (void)didReceiveMemoryWarning {
